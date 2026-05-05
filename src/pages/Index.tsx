@@ -1,14 +1,16 @@
 import { useEffect, useMemo, useState } from "react";
 import { TopBar, TickerBar } from "@/components/aether/TopBar";
 import { TelemetryCard, useTelemetry } from "@/components/aether/TelemetryCard";
-import { EnergyPlant, FlowMode } from "@/components/aether/EnergyPlant";
+import { EnergyPlant, FlowMode, PlantNodeId } from "@/components/aether/EnergyPlant";
 import { TechRadar } from "@/components/aether/TechRadar";
 import { SimulationBar } from "@/components/aether/SimulationBar";
 import { AIPanel } from "@/components/aether/AIPanel";
+import { NodeSimulationPanel } from "@/components/aether/NodeSimulationPanel";
 
 const Index = () => {
   const [mode, setMode] = useState<FlowMode>("charging");
   const [activeTech, setActiveTech] = useState(0);
+  const [openNode, setOpenNode] = useState<PlantNodeId | null>(null);
 
   // Telemetry streams (drift to mode)
   const baseLoad = mode === "peak" ? 42 : mode === "discharging" ? 32 : 22;
@@ -64,7 +66,7 @@ const Index = () => {
           {/* CENTER — 3D Plant */}
           <section className="col-span-12 lg:col-span-6">
             <div className="glass-panel-strong holo-border rounded-2xl overflow-hidden h-[560px] relative">
-              <EnergyPlant mode={mode} storageLevel={storage.value} hydrogenLevel={hydroLevel} />
+              <EnergyPlant mode={mode} storageLevel={storage.value} hydrogenLevel={hydroLevel} onNodeClick={setOpenNode} />
             </div>
           </section>
 
@@ -93,6 +95,8 @@ const Index = () => {
           <span className="text-energy">● TELEMETRY 1Hz</span>
         </footer>
       </div>
+
+      {openNode && <NodeSimulationPanel nodeId={openNode} onClose={() => setOpenNode(null)} />}
     </main>
   );
 };

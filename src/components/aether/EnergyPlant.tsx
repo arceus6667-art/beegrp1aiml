@@ -1,11 +1,13 @@
 import { useMemo } from "react";
 
 export type FlowMode = "charging" | "discharging" | "peak";
+export type PlantNodeId = "solar" | "wind" | "battery" | "hydrogen" | "core" | "grid";
 
 interface EnergyPlantProps {
   mode: FlowMode;
   storageLevel: number; // 0-100
   hydrogenLevel: number;
+  onNodeClick?: (id: PlantNodeId) => void;
 }
 
 /**
@@ -13,7 +15,7 @@ interface EnergyPlantProps {
  * Solar panels, wind turbines (input) -> battery + hydrogen storage -> grid output.
  * Particles flow along paths to visualize charging / discharging cycle.
  */
-export const EnergyPlant = ({ mode, storageLevel, hydrogenLevel }: EnergyPlantProps) => {
+export const EnergyPlant = ({ mode, storageLevel, hydrogenLevel, onNodeClick }: EnergyPlantProps) => {
   const flowSpeed = mode === "peak" ? "1.6s" : mode === "discharging" ? "2.2s" : "3s";
   const particleCount = mode === "peak" ? 8 : 6;
 
@@ -209,6 +211,30 @@ export const EnergyPlant = ({ mode, storageLevel, hydrogenLevel }: EnergyPlantPr
               </animateMotion>
             </circle>
           ))
+        )}
+
+        {/* Clickable hotspots */}
+        {onNodeClick && (
+          <g style={{ cursor: "pointer" }}>
+            <rect x="60"  y="70"  width="130" height="110" fill="transparent" onClick={() => onNodeClick("solar")}>
+              <title>Solar Array</title>
+            </rect>
+            <rect x="600" y="50"  width="150" height="120" fill="transparent" onClick={() => onNodeClick("wind")}>
+              <title>Wind Farm</title>
+            </rect>
+            <rect x="100" y="395" width="130" height="100" fill="transparent" onClick={() => onNodeClick("battery")}>
+              <title>Li-Ion Battery</title>
+            </rect>
+            <rect x="540" y="395" width="130" height="100" fill="transparent" onClick={() => onNodeClick("hydrogen")}>
+              <title>Hydrogen Storage</title>
+            </rect>
+            <rect x="340" y="220" width="120" height="100" fill="transparent" onClick={() => onNodeClick("core")}>
+              <title>Core Reactor</title>
+            </rect>
+            <rect x="360" y="465" width="80"  height="50"  fill="transparent" onClick={() => onNodeClick("grid")}>
+              <title>Grid Out</title>
+            </rect>
+          </g>
         )}
       </svg>
 
