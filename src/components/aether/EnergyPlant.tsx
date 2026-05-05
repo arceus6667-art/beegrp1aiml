@@ -1,11 +1,13 @@
 import { useMemo } from "react";
 
 export type FlowMode = "charging" | "discharging" | "peak";
+export type PlantNodeId = "solar" | "wind" | "battery" | "hydrogen" | "core" | "grid";
 
 interface EnergyPlantProps {
   mode: FlowMode;
   storageLevel: number; // 0-100
   hydrogenLevel: number;
+  onNodeClick?: (id: PlantNodeId) => void;
 }
 
 /**
