@@ -95,6 +95,8 @@ const Index = () => {
           <span className="text-energy">● TELEMETRY 1Hz</span>
         </footer>
       </div>
+
+      {openNode && <NodeSimulationPanel nodeId={openNode} onClose={() => setOpenNode(null)} />}
     </main>
   );
 };
