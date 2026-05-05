@@ -66,7 +66,7 @@ const Index = () => {
           {/* CENTER — 3D Plant */}
           <section className="col-span-12 lg:col-span-6">
             <div className="glass-panel-strong holo-border rounded-2xl overflow-hidden h-[560px] relative">
-              <EnergyPlant mode={mode} storageLevel={storage.value} hydrogenLevel={hydroLevel} />
+              <EnergyPlant mode={mode} storageLevel={storage.value} hydrogenLevel={hydroLevel} onNodeClick={setOpenNode} />
             </div>
           </section>
 
