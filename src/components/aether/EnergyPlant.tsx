@@ -212,6 +212,30 @@ export const EnergyPlant = ({ mode, storageLevel, hydrogenLevel, onNodeClick }: 
             </circle>
           ))
         )}
+
+        {/* Clickable hotspots */}
+        {onNodeClick && (
+          <g style={{ cursor: "pointer" }}>
+            <rect x="60"  y="70"  width="130" height="110" fill="transparent" onClick={() => onNodeClick("solar")}>
+              <title>Solar Array</title>
+            </rect>
+            <rect x="600" y="50"  width="150" height="120" fill="transparent" onClick={() => onNodeClick("wind")}>
+              <title>Wind Farm</title>
+            </rect>
+            <rect x="100" y="395" width="130" height="100" fill="transparent" onClick={() => onNodeClick("battery")}>
+              <title>Li-Ion Battery</title>
+            </rect>
+            <rect x="540" y="395" width="130" height="100" fill="transparent" onClick={() => onNodeClick("hydrogen")}>
+              <title>Hydrogen Storage</title>
+            </rect>
+            <rect x="340" y="220" width="120" height="100" fill="transparent" onClick={() => onNodeClick("core")}>
+              <title>Core Reactor</title>
+            </rect>
+            <rect x="360" y="465" width="80"  height="50"  fill="transparent" onClick={() => onNodeClick("grid")}>
+              <title>Grid Out</title>
+            </rect>
+          </g>
+        )}
       </svg>
 
       {/* Mode badge */}
