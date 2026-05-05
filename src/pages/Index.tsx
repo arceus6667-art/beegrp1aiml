@@ -10,6 +10,7 @@ import { NodeSimulationPanel } from "@/components/aether/NodeSimulationPanel";
 const Index = () => {
   const [mode, setMode] = useState<FlowMode>("charging");
   const [activeTech, setActiveTech] = useState(0);
+  const [openNode, setOpenNode] = useState<PlantNodeId | null>(null);
 
   // Telemetry streams (drift to mode)
   const baseLoad = mode === "peak" ? 42 : mode === "discharging" ? 32 : 22;
