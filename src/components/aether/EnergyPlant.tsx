@@ -15,7 +15,7 @@ interface EnergyPlantProps {
  * Solar panels, wind turbines (input) -> battery + hydrogen storage -> grid output.
  * Particles flow along paths to visualize charging / discharging cycle.
  */
-export const EnergyPlant = ({ mode, storageLevel, hydrogenLevel }: EnergyPlantProps) => {
+export const EnergyPlant = ({ mode, storageLevel, hydrogenLevel, onNodeClick }: EnergyPlantProps) => {
   const flowSpeed = mode === "peak" ? "1.6s" : mode === "discharging" ? "2.2s" : "3s";
   const particleCount = mode === "peak" ? 8 : 6;
 
