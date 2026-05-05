@@ -8,7 +8,7 @@ export const TopBar = () => {
     return () => clearInterval(id);
   }, []);
 
-  const ts = time.toISOString().slice(11, 19) + " UTC";
+  const ts = time.toLocaleTimeString("en-GB", { timeZone: "Asia/Kolkata", hour12: false }) + " IST";
 
   return (
     <header className="glass-panel-strong rounded-2xl px-5 py-3 flex items-center justify-between gap-4 animate-fade-in">
