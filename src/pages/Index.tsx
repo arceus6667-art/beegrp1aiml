@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import { TopBar, TickerBar } from "@/components/aether/TopBar";
 import { TelemetryCard, useTelemetry } from "@/components/aether/TelemetryCard";
-import { EnergyPlant, FlowMode } from "@/components/aether/EnergyPlant";
+import { EnergyPlant, FlowMode, PlantNodeId } from "@/components/aether/EnergyPlant";
 import { TechRadar } from "@/components/aether/TechRadar";
 import { SimulationBar } from "@/components/aether/SimulationBar";
 import { AIPanel } from "@/components/aether/AIPanel";
+import { NodeSimulationPanel } from "@/components/aether/NodeSimulationPanel";
 
 const Index = () => {
   const [mode, setMode] = useState<FlowMode>("charging");
